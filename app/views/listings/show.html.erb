@@ -12,6 +12,9 @@
     <p><%= @listing.description %></p>
   </div>
 </div>
-
-<%= link_to 'Edit', edit_listing_path(@listing), class: "btn btn-link" %>
-<%= link_to 'Back', listings_path, class: "btn btn-link" %>
+<nav>
+  <ul class="pager">
+    <li><%= link_to 'Edit', edit_listing_path(@listing), class: "btn btn-link" %></li>
+    <li><%= link_to 'Back', listings_path, class: "btn btn-link" %></li>
+  </ul>
+</nav>
