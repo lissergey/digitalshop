@@ -12,9 +12,12 @@
     <p><%= @listing.description %></p>
   </div>
 </div>
-<nav>
-  <ul class="pager">
-    <li><%= link_to 'Edit', edit_listing_path(@listing), class: "btn btn-link" %></li>
-    <li><%= link_to 'Back', listings_path, class: "btn btn-link" %></li>
-  </ul>
-</nav>
+
+<% if (user_signed_in?) && (current_user.id == @listing.user_id) %>
+  <nav>
+    <ul class="pager">
+      <li><%= link_to 'Edit', edit_listing_path(@listing), class: "btn btn-link" %></li>
+      <li><%= link_to 'Back', listings_path, class: "btn btn-link" %></li>
+    </ul>
+  </nav>
+<% end %>

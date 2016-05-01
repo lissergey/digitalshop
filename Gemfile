@@ -27,6 +27,7 @@ gem 'paperclip', '~> 4.3', '>= 4.3.6'
 gem 'paperclip-dropbox', '>= 1.1.7'
 gem 'figaro'
 gem 'devise'
+gem 'recaptcha', require: 'recaptcha/rails'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
