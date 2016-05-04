@@ -1,9 +1,16 @@
 Rails.application.routes.draw do
+  get 'pages/delivery'
+
+  get 'pages/waranty'
+
   devise_for :users
   resources :listings
+  resources :posts
   get 'pages/about'
 
   get 'pages/contact'
+
+  get 'posts/index'
 
   root 'listings#index'
 

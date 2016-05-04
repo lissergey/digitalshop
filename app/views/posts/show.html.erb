@@ -1,0 +1,11 @@
+<h1><%= @post.title %></h1>
+<%= markdown @post.content %>
+
+<% if (user_signed_in?)%>
+    <nav>
+      <ul class="pager">
+        <li><%= link_to 'Редагувати', edit_post_path(@post), class: "btn btn-link" %></li>
+        <li><%= link_to 'Видалити', post_path, class: "btn btn-link" %></li>
+      </ul>
+    </nav>
+<% end %>

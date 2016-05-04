@@ -1,23 +1,49 @@
 <p id="notice"><%= notice %></p>
 
 <div class="row">
+  <h3 class="found-title"><%= @listing.name %></h3>
   <div class="col-md-6">
     <div class="thumbnail">
       <%= image_tag @listing.image.url %>
     </div>
   </div>
   <div class="col-md-6">
-    <h3><%= @listing.name %></h3>
-    <p><%= number_to_currency(@listing.price) %></p>
-    <p><%= @listing.description %></p>
+    <p class="delivery">
+      <h4>Доставка</h4>
+      <p>
+            <li>− Ви можете отримати товар в нашому магазині</li>
+            <li>− або отримати у відділенні нової пошти</li>
+            <li>- Доставимо кур'єром в зручний для вас час.</li>
+      <h4>Розрахунок</h4>
+            Готівкою, безготівковий, кредит, Visa/MasterCard</br>
+      <br>Гарантія: <b>24 місяця</b>
+    </p>
+    </p>
+    <p class="price">
+      Вартість товару: <%= number_to_currency(@listing.price) %> грн
+    </p>
+    <a href="" class="btn btn-success">У кошик</a>
   </div>
 </div>
-
+  <div class="row">
+    <div class="span9">
+      <!-- Nav tabs -->
+      <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Опис</a></li>
+        <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Характеристики</a></li>
+      </ul>
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="home"><%= simple_format @listing.description %></div>
+        <div role="tabpanel" class="tab-pane" id="profile"><%= markdown @listing.specification %></div>
+      </div>
+  </div>
+</div>
 <% if (user_signed_in?) && (current_user.id == @listing.user_id) %>
-  <nav>
-    <ul class="pager">
-      <li><%= link_to 'Edit', edit_listing_path(@listing), class: "btn btn-link" %></li>
-      <li><%= link_to 'Back', listings_path, class: "btn btn-link" %></li>
-    </ul>
-  </nav>
+    <nav>
+      <ul class="pager">
+        <li><%= link_to 'Редагувати', edit_listing_path(@listing), class: "btn btn-link" %></li>
+        <li><%= link_to 'Видалити', listings_path, class: "btn btn-link" %></li>
+      </ul>
+    </nav>
 <% end %>

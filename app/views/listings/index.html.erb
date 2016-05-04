@@ -2,25 +2,30 @@
 
 <div class="row">
   <% @listings.each do |listing| %>
-      <div class="col-md-3">
-        <div class="thumbnail">
-          <%= link_to image_tag(listing.image.url), listing %>
-          <div class="caption">
-            <h3><%= listing.name %></h3>
-            <p><%= listing.price %></p>
-            <nav>
-              <% if (user_signed_in?) && (current_user.id == listing.user_id) %>
-                <ul class="pager">
-                  <li><%= link_to 'Edit', edit_listing_path(listing), class: "btn btn-link" %></li>
-                  <li><%= link_to 'Destroy', listing, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-link" %></li>
-                </ul>
-              <% end %>
-            </nav>
-          </div>
+    <div class="col-sm-4 col-lg-4 col-md-4">
+      <div class="thumbnail">
+        <%= link_to image_tag(listing.image.url), listing %>
+        <div class="caption">
+          <h4 class="pull-right"><%= listing.price %> грн</h4>
+          <h4><%= link_to listing.name, listing %></h4>
         </div>
+        <div class="ratings">
+          <p class="pull-right"><%= link_to "У кошик", listing, class: "btn btn-success" %></p>
+          <p class="info-buttons">
+            <%= link_to "Детальніше", listing, class: "btn btn-primary" %>
+          </p>
+        </div>
+        <% if (user_signed_in?) && (current_user.id == listing.user_id) %>
+            <ul class="pager">
+              <li><%= link_to 'Edit', edit_listing_path(listing), class: "btn btn-link" %></li>
+              <li><%= link_to 'Destroy', listing, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-link" %></li>
+            </ul>
+        <% end %>
       </div>
+    </div>
   <% end %>
 </div>
+
 
 <br>
 <% if user_signed_in? %>

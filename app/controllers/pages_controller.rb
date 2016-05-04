@@ -4,4 +4,11 @@ class PagesController < ApplicationController
 
   def contact
   end
+
+  def delivery
+  end
+
+  def waranty
+
+  end
 end

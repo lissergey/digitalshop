@@ -2,6 +2,7 @@
 <html>
 <head>
   <title>digitalshop</title>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -17,7 +18,27 @@
           </div>
       <% end %>
   <% end %>
-  <%= yield %>
+
+
+  <!-- Page Content -->
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3">
+        <p class="lead">Каталог товарів</p>
+        <div class="list-group">
+          <a href="#" class="list-group-item">Категорія 1</a>
+          <a href="#" class="list-group-item">Категорія 2</a>
+          <a href="#" class="list-group-item">Категорія 3</a>
+        </div>
+      </div>
+
+      <div class="col-md-9">
+        <%= yield %>
+      </div>
+    </div>
+
+  </div>
+  <!-- /.container -->
 </div>
 <%= render 'layouts/footer' %>
 </body>
