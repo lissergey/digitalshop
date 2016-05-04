@@ -15,6 +15,7 @@
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "normalize";
 
 body {
   color: #333333;
@@ -64,6 +65,7 @@ body {
   padding-right: 10px;
   padding-left: 10px;
   color: #d17581;
+  padding-bottom: 2em;
 }
 
 .thumbnail {
@@ -100,4 +102,36 @@ footer {
 
 .btn-success > a {
   color: white;
+}
+
+.news_box {
+
+}
+a {
+  text-decoration: none;
+}
+
+a:active {
+  background-color: white;
+  text-decoration: none;
+}
+
+a:hover {
+  background-color: white;
+  text-decoration: none;
+  color: black;
+}
+
+.row_1 {
+  margin-left: 2em;
+}
+
+.about_content {
+  font-size: 16px;
+}
+
+.size {
+  width: 180px;
+  height: 180px;
+  margin-left: 2.5em;
 }

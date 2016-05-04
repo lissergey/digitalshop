@@ -20,7 +20,7 @@
     </p>
     </p>
     <p class="price">
-      Вартість товару: <%= number_to_currency(@listing.price) %> грн
+      Вартість товару: <%= @listing.price %> грн
     </p>
     <a href="" class="btn btn-success">У кошик</a>
   </div>
@@ -39,7 +39,7 @@
       </div>
   </div>
 </div>
-<% if (user_signed_in?) && (current_user.id == @listing.user_id) %>
+<% if (user_signed_in?) && (current_user.group == "manager") %>
     <nav>
       <ul class="pager">
         <li><%= link_to 'Редагувати', edit_listing_path(@listing), class: "btn btn-link" %></li>

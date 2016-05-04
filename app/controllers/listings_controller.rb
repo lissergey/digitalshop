@@ -72,11 +72,11 @@ class ListingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def listing_params
-      params.require(:listing).permit(:name, :description, :price, :specification, :image)
+      params.require(:listing).permit(:name, :category_id, :description, :price, :specification, :image)
     end
 
     def check_user
-      if current_user.id != @listing.user_id
+      if current_user.group != "manager"
         redirect_to root_url, alert: "Sorry, this listing belongs some one else"
       end
     end
