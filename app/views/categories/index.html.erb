@@ -1,12 +1,11 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Categories</h1>
+<h1>Керування категоріями</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
-      <th>Name</th>
-      <th colspan="3"></th>
+      <th>Назва</th>
     </tr>
   </thead>
 
@@ -14,9 +13,9 @@
     <% @categories.each do |category| %>
       <tr>
         <td><%= category.name %></td>
-        <td><%= link_to 'Show', category %></td>
-        <td><%= link_to 'Edit', edit_category_path(category) %></td>
-        <td><%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to '', category, class:"glyphicon glyphicon-search" %></td>
+        <td><%= link_to '', edit_category_path(category), class:"glyphicon glyphicon-pencil" %></td>
+        <td><%= link_to '', category, method: :delete, class:"glyphicon glyphicon-remove-circle", data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -24,4 +23,4 @@
 
 <br>
 
-<%= link_to 'New Category', new_category_path %>
+<%= link_to ' Створити категорію', new_category_path, class:"glyphicon glyphicon-plus-sign" %>

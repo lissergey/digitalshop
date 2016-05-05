@@ -1,6 +1,10 @@
-<h1>Editing Category</h1>
+<h1>Редагування категорії</h1>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @category %> |
-<%= link_to 'Back', categories_path %>
+<nav>
+  <ul class="pager">
+    <li><%= link_to 'Переглянути', @category, class: "btn btn-link" %></li>
+    <li><%= link_to 'До списку категорій', categories_path, class: "btn btn-link" %></li>
+  </ul>
+</nav>

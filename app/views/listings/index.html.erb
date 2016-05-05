@@ -10,7 +10,7 @@
         <div class="size"><%= link_to image_tag(listing.image.url), listing %></div>
         <div class="ratings">
           <p class="info-buttons">
-            <p class="pull-right"><%= link_to "У кошик", listing, class: "btn btn-success" %></p>
+            <p class="pull-right"><%= button_to 'У кошик', line_items_path(listing_id: listing), class: "btn btn-success" %></p>
             <h4><%= listing.price %> грн</h4>
           </p>
         </div>
@@ -18,9 +18,3 @@
     </div>
   <% end %>
 </div>
-
-
-<br>
-<% if user_signed_in? %>
-  <%= link_to "New Listing", new_listing_path, class: "btn btn-link" %>
-<% end %>

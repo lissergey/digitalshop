@@ -1,5 +1,10 @@
-<h1>New Category</h1>
+<h1>Створення категорії</h1>
 
 <%= render 'form' %>
 
-<%= link_to 'Back', categories_path %>
+<nav>
+  <ul class="pager">
+    <li><%= link_to 'До списку категорій', categories_path, class: "previous"%></li>
+  </ul>
+</nav>
+

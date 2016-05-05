@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Керування замовленнями</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Ім'я</th>
+      <th>Адреса доставки</th>
+      <th>Email</th>
+      <th>Телефон</th>
+      <th>Тип оплати</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @orders.each do |order| %>
+      <tr>
+        <td><%= order.name %></td>
+        <td><%= order.address %></td>
+        <td><%= order.email %></td>
+        <td><%= order.phone %></td>
+        <td><%= order.pay_type %></td>
+        <td><%= link_to '' , order, class:"glyphicon glyphicon-search" %></td>
+        <td><%= link_to '', edit_order_path(order), class:"glyphicon glyphicon-pencil" %></td>
+        <td><%= link_to '', order, method: :delete, class:"glyphicon glyphicon-remove-circle", data: { confirm: 'Ви впевнені що хочете видалити замовлення?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to ' Створити замовлення', new_order_path, class:"glyphicon glyphicon-plus-sign" %>

@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Ім'я:</strong>
+  <%= @order.name %>
+</p>
+
+<p>
+  <strong>Адреса:</strong>
+  <%= @order.address %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @order.email %>
+</p>
+
+<p>
+  <strong>Телефон:</strong>
+  <%= @order.phone %>
+</p>
+
+<p>
+  <strong>Тип оплати:</strong>
+  <%= @order.pay_type %>
+</p>
+
+<table class="table">
+  <tr><th>Кількість</th>
+    <th>Товар</th>
+    <th>Ціна</th>
+  </tr>
+  <%= render @order.line_items -%>
+</table>
+
+<nav>
+  <ul class="pager">
+    <li><%= link_to 'Редагувати', edit_order_path(@order), class: "btn btn-link" %></li>
+    <li><%= link_to 'До списку замовлень', orders_path, class: "btn btn-link" %></li>
+  </ul>
+</nav>

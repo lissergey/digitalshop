@@ -1,0 +1,38 @@
+<%= form_for(@order) do |f| %>
+  <% if @order.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
+
+      <ul>
+      <% @order.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label "Прізвище та Ім'я" %><br>
+    <%= f.text_field :name, size: 40, class: "form-control"%>
+  </div>
+  <div class="form-group">
+    <%= f.label 'Адреса доставки' %><br>
+    <%= f.text_area :address, rows: 3, cols: 40, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label 'Email' %><br>
+    <%= f.text_field :email, size: 40, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label 'Номер телефону' %><br>
+    <%= f.text_field :phone, size: 40, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label 'Спосіб оплати' %><br>
+    <%= f.select :pay_type, Order::PAYMENT_TYPES,
+        prompt: 'Оберіть спосіб оплати', class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.submit 'Підтвердити замовлення', class: "btn btn-success"%>
+  </div>
+<% end %>

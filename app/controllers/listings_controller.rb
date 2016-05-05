@@ -1,12 +1,17 @@
 class ListingsController < ApplicationController
   before_action :set_listing, only: [:show, :edit, :update, :destroy]
-  before_filter :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
-  before_filter :check_user, only: [:edit, :update, :destroy]
+#  before_filter :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+  before_filter :check_user, only: [:new, :create, :edit, :update, :destroy]
 
   # GET /listings
   # GET /listings.json
   def index
-    @listings = Listing.all
+    if params[:category].blank?
+      @listings = Listing.all
+    else
+      @category_id = Category.find_by(name: params[:category]).id
+      @listings = Listings
+    end
   end
 
   # GET /listings/1
@@ -65,6 +70,7 @@ class ListingsController < ApplicationController
   end
 
   private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_listing
       @listing = Listing.find(params[:id])
@@ -76,8 +82,8 @@ class ListingsController < ApplicationController
     end
 
     def check_user
-      if current_user.group != "manager"
-        redirect_to root_url, alert: "Sorry, this listing belongs some one else"
+      if !current_user.admin
+        redirect_to root_url, alert: "Не достаточно прав для редактирования"
       end
     end
 end

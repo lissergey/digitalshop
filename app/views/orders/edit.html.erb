@@ -1,0 +1,10 @@
+<h1>Редагування замовлення</h1>
+
+<%= render 'form' %>
+
+<nav>
+  <ul class="pager">
+    <li><%= link_to 'Переглянути', @order, class: "btn btn-link" %></li>
+    <li><%= link_to 'До списку замовлень', orders_path, class: "btn btn-link" %></li>
+  </ul>
+</nav>

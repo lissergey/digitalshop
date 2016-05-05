@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  devise_for :admins
+  resources :orders
+  resources :line_items
+  resources :carts
   resources :categories
   get 'pages/delivery'
 

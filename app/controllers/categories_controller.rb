@@ -1,10 +1,15 @@
 class CategoriesController < ApplicationController
   before_action :set_category, only: [:show, :edit, :update, :destroy]
+  before_filter :check_user, only: [:new, :create, :edit, :update, :destroy]
 
   # GET /categories
   # GET /categories.json
   def index
-    @categories = Category.all
+    if current_user.admin?
+      @categories = Category.all
+    else
+      redirect_to root_path, notice: "Доступ запрещен"
+    end
   end
 
   # GET /categories/1
@@ -70,5 +75,11 @@ class CategoriesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def category_params
       params.require(:category).permit(:name)
+    end
+
+    def check_user
+      if !current_user.admin
+        redirect_to root_url, alert: "У вас не достаточно прав для выполнения этого действия"
+      end
     end
 end
