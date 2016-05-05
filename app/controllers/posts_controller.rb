@@ -46,7 +46,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
   end
   def check_user
-    if current_user.try(:admin?)
+    if !current_user.admin
       redirect_to root_url, alert: "У вас не достаточно прав для выполнения этого действия"
     end
   end

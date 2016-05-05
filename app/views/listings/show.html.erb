@@ -39,7 +39,7 @@
       </div>
   </div>
 </div>
-<% if (user_signed_in?) && !current_user.admin %>
+<% if (user_signed_in?) && current_user.admin? %>
     <nav>
       <ul class="pager">
         <li><%= link_to 'Редагувати', edit_listing_path(@listing), class: "btn btn-link" %></li>

@@ -29,14 +29,18 @@ body {
 .navbar-default .navbar-brand {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
-  color: #d5641c;
+  color: white;
   font-size: 30px;
 }
 .navbar-default .navbar-nav > li > a {
   font-family: 'Open Sans', sans-serif;
   font-size: 14px;
   font-weight: normal;
-  color: #0192B5;
+  color: white;
+}
+.nav{
+  font-family: 'Open Sans', sans-serif;
+  color: white;
 }
 .center {
   text-align: center;
@@ -151,4 +155,8 @@ a:hover {
   input{
     float:left;
   }
+}
+
+.header{
+  position: fixed;
 }
