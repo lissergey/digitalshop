@@ -22,7 +22,7 @@
     <p class="price">
       Вартість товару: <%= @listing.price %> грн
     </p>
-    <%= button_to 'Add to Cart', line_items_path(listing_id: @listing) %>
+    <%= button_to 'Придбати', line_items_path(listing_id: @listing), class: "btn btn-success" %>
   </div>
 </div>
   <div class="row">

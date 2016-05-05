@@ -17,6 +17,7 @@ gem 'recaptcha', require: 'recaptcha/rails'
 gem 'redcarpet', '~> 3.3', '>= 3.3.4'
 gem 'will_paginate', '~> 3.1'
 gem 'will_paginate-bootstrap'
+gem 'searchkick'
 
 group :production do
   gem 'pg'

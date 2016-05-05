@@ -3,6 +3,13 @@ class ListingsController < ApplicationController
 #  before_filter :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   before_filter :check_user, only: [:new, :create, :edit, :update, :destroy]
 
+  def search
+    if params[:search].present?
+      @listings = Listing.search(params[:search])
+    else
+      @listings = Listing.all
+    end
+  end
   # GET /listings
   # GET /listings.json
   def index
@@ -10,7 +17,7 @@ class ListingsController < ApplicationController
       @listings = Listing.all
     else
       @category_id = Category.find_by(name: params[:category]).id
-      @listings = Listings
+      @listings = Listing.where(category_id: @category_id).order("created_at DESC")
     end
   end
 

@@ -1,4 +1,5 @@
 class Listing < ActiveRecord::Base
+
   if Rails.env.development?
     has_attached_file :image, :styles => { medium: "50x50>", thumb: "50x50>" }, :default_url => "default.jpg" , :resize_to_fit => [200, 300]
   else
@@ -12,6 +13,8 @@ class Listing < ActiveRecord::Base
   validates :name, :description, :price, :specification, presence: true
   validates :price, numericality: {greater_than:  0}
   validates_attachment_presence :image
+
+  searchkick
 
   has_many :line_items
   belongs_to :category

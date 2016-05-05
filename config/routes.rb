@@ -8,6 +8,12 @@ Rails.application.routes.draw do
 
   get 'pages/waranty'
 
+  resources :listings do
+    collection do
+      get 'search'
+    end
+  end
+
   devise_for :users
   resources :listings
   resources :posts
