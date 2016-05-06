@@ -16,7 +16,7 @@
         <li><%= link_to "Гарантія", pages_waranty_path %></li>
         <li><%= link_to "Доставка", pages_delivery_path %></li>
         <li><%= link_to "Про нас", pages_about_path %></li>
-        <li><%= link_to "Зворотній зв'язок", pages_contact_path %></li>
+        <li><%= link_to "Зворотній зв'язок", contacts_path %></li>
       </ul>
       <%= form_tag search_listings_path, method: :get, class: "navbar-form navbar-left" do %>
             <%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Наприклад: Canon" %>

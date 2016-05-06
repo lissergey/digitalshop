@@ -27,4 +27,7 @@ Rails.application.routes.draw do
   root 'listings#index'
 
   match '/users',   to: 'users#index',   via: 'get'
+
+  match '/contacts',     to: 'contacts#new',             via: 'get'
+  resources "contacts", only: [:new, :create]
 end

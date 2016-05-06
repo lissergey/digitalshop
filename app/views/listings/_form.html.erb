@@ -22,11 +22,11 @@
     </div>
     <div class="form-group">
     <%= f.label 'Опис' %><br>
-    <%= f.text_area :description, class: "form-control" %>
+    <%= f.text_area :description, class: "form-control", rows: "10" %>
   </div>
     <div class="form-group">
       <%= f.label 'Характеристики' %><br>
-      <%= f.text_area :specification, class: "form-control" %>
+      <%= f.text_area :specification, class: "form-control", rows: "10" %>
     </div>
     <div class="form-group">
     <%= f.label 'Ціна' %><br>
@@ -34,7 +34,7 @@
   </div>
     <div class="form-group">
       <%= f.label 'Зображення' %><br>
-      <%= f.file_field :image, class: "form-control" %>
+      <%= f.file_field :image %>
     </div>
   <div class="actions">
     <%= f.submit 'Створити', class: "btn btn-primary" %>
