@@ -18,7 +18,7 @@ class ListingsController < ApplicationController
       @listings = @listings.where(price: params["price"])
     elsif params[:category].present?
       @category_id = Category.find_by(name: params[:category]).id
-      @listings = Listing.where(category_id: @category_id).order("created_at DESC")
+      @listings = Listing.where(category_id: @category_id).order("created_at DESC").paginate(:page => params[:page], :per_page => 9)
     else
       #@listings = Listing.all.order("created_at DESC")
       @listings = Listing.all.order("created_at desc").paginate(:page => params[:page], :per_page => 9)

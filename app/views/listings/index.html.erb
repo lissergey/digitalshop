@@ -12,4 +12,5 @@
     </div>
   <% end %>
 </div>
-<center><%= will_paginate @listing, renderer: BootstrapPagination::Rails, :previous_label => 'Назад', :next_label => 'Вперед' %></center>
+<center>
+  <%= will_paginate @listing, renderer: BootstrapPagination::Rails, :previous_label => 'Назад', :next_label => 'Вперед' %></center>
