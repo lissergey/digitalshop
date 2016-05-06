@@ -2,14 +2,14 @@
   <% @listings.each do |listing| %>
       <div class="col-sm-4 col-lg-4 col-md-4">
         <div class="thumbnail">
-          <h5><%= link_to listing.name, listing %></h5>
+          <h5 class="prod_title_list"><%= link_to listing.name, listing %></h5>
           <%= link_to image_tag(listing.image.url), listing %>
           <div class="caption">
-            <h5 class="pull-right"><%= link_to "У кошик", listing, class: "btn btn-success btn-xs" %></h5>
+            <h5 class="pull-right"><%= button_to "У кошик", line_items_path(listing_id: listing), class: "btn btn-success btn-xs" %></h5>
             <h4><%= listing.price %> грн</h4>
           </div>
         </div>
       </div>
   <% end %>
 </div>
-<center><%= will_paginate @listing, renderer: BootstrapPagination::Rails %></center>
+<center><%= will_paginate @listing, renderer: BootstrapPagination::Rails, :previous_label => 'Назад', :next_label => 'Вперед' %></center>

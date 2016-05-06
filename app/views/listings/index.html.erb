@@ -1,13 +1,4 @@
-<p id="notice"><%= notice %></p>
-<div class="filter">
-  <%= form_tag listings_path, method: :get do %>
-      <%= label_tag :price %>
-      <%= text_field_tag :price %>
-
-      <%= submit_tag "Search", name: nil %>
-  <% end %>
-</div>
-  <div>
+ <div>
   <% @listings.each do |listing| %>
     <div class="col-sm-4 col-lg-4 col-md-4">
       <div class="thumbnail">

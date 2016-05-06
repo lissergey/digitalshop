@@ -37,3 +37,11 @@
 3. Телефоны, MP3
 4. ТВ, ФОТО И ВИДЕО
 5. Бытовая техника
+<div class="filter">
+  <%= form_tag listings_path, method: :get do %>
+      <%= label_tag :price %>
+      <%= text_field_tag :price %>
+
+      <%= submit_tag "Search", name: nil %>
+  <% end %>
+</div>
