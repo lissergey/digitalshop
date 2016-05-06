@@ -13,31 +13,30 @@
   <% end %>
 
     <div class="form-group">
-    <%= f.label :name %><br>
+    <%= f.label 'Назва' %><br>
     <%= f.text_field :name, class: "form-control" %>
   </div>
     <div class="form-group">
-      <%= f.label :category_id %><br>
+      <%= f.label 'Категорія' %><br>
       <%= f.collection_select :category_id, Category.all, :id, :name, {prompt: "Оберіть категорію"}, {class: "btn btn-default dropdown-toggle"} %>
     </div>
     <div class="form-group">
-    <%= f.label :description %><br>
+    <%= f.label 'Опис' %><br>
     <%= f.text_area :description, class: "form-control" %>
   </div>
     <div class="form-group">
-      <%= f.label :specification %><br>
+      <%= f.label 'Характеристики' %><br>
       <%= f.text_area :specification, class: "form-control" %>
     </div>
     <div class="form-group">
-    <%= f.label :price %><br>
+    <%= f.label 'Ціна' %><br>
     <%= f.text_field :price, class: "form-control" %>
   </div>
     <div class="form-group">
-      <%= f.label :image %><br>
+      <%= f.label 'Зображення' %><br>
       <%= f.file_field :image, class: "form-control" %>
     </div>
-    <%= recaptcha_tags %>
   <div class="actions">
-    <%= f.submit class: "btn btn-primary" %>
+    <%= f.submit 'Створити', class: "btn btn-primary" %>
   </div>
 <% end %>

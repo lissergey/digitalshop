@@ -8,8 +8,4 @@
       </div>
   <% end %>
 <br>
-  <%= will_paginate @post, renderer: BootstrapPagination::Rails %>
-<br>
-<% if user_signed_in? %>
-    <p></p><%= link_to "Додати новину", new_post_path, class: "btn btn-success" %><p/>
-<% end %>
+  <center><%= will_paginate @post, renderer: BootstrapPagination::Rails, :previous_label => 'Назад', :next_label => 'Вперед' %></center>

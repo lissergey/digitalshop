@@ -1,11 +1,11 @@
 <h1><%= @post.title %></h1>
 <%= markdown @post.content %>
 
-<% if (user_signed_in?)%>
+<% if (user_signed_in?) && current_user.admin? %>
     <nav>
       <ul class="pager">
         <li><%= link_to 'Редагувати', edit_post_path(@post), class: "btn btn-link" %></li>
-        <li><%= link_to 'Видалити', post_path, class: "btn btn-link" %></li>
+        <li><%= link_to 'Видалити', post_path(@post), method: :delete, data: { confirm: 'Ви впевнені?' }, class: "btn btn-link" %></li>
       </ul>
     </nav>
 <% end %>

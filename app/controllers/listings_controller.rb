@@ -10,43 +10,38 @@ class ListingsController < ApplicationController
       @listings = Listing.all
     end
   end
-  # GET /listings
-  # GET /listings.json
+
   def index
     if params[:price].present?
-      @listings = Listing.all
+      #@listings = Listing.all
+      @listings = Listing.all.order("created_at desc").paginate(:page => params[:page], :per_page => 9)
       @listings = @listings.where(price: params["price"])
     elsif params[:category].present?
       @category_id = Category.find_by(name: params[:category]).id
       @listings = Listing.where(category_id: @category_id).order("created_at DESC")
     else
-      @listings = Listing.all.order("created_at DESC")
+      #@listings = Listing.all.order("created_at DESC")
+      @listings = Listing.all.order("created_at desc").paginate(:page => params[:page], :per_page => 9)
     end
   end
 
-  # GET /listings/1
-  # GET /listings/1.json
   def show
   end
 
-  # GET /listings/new
   def new
     @listing = Listing.new
   end
 
-  # GET /listings/1/edit
   def edit
   end
 
-  # POST /listings
-  # POST /listings.json
   def create
     @listing = Listing.new(listing_params)
     @listing.user_id = current_user.id
 
     respond_to do |format|
-      if verify_recaptcha(model: @listing) && @listing.save
-        format.html { redirect_to @listing, notice: 'Listing was successfully created.' }
+      if @listing.save
+        format.html { redirect_to @listing, notice: 'Товар успішно додано.' }
         format.json { render :show, status: :created, location: @listing }
       else
         format.html { render :new }
@@ -55,12 +50,10 @@ class ListingsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /listings/1
-  # PATCH/PUT /listings/1.json
   def update
     respond_to do |format|
       if @listing.update(listing_params)
-        format.html { redirect_to @listing, notice: 'Listing was successfully updated.' }
+        format.html { redirect_to @listing, notice: 'Товар успішно оновлено.' }
         format.json { render :show, status: :ok, location: @listing }
       else
         format.html { render :edit }
@@ -69,31 +62,27 @@ class ListingsController < ApplicationController
     end
   end
 
-  # DELETE /listings/1
-  # DELETE /listings/1.json
   def destroy
     @listing.destroy
     respond_to do |format|
-      format.html { redirect_to listings_url, notice: 'Listing was successfully destroyed.' }
+      format.html { redirect_to listings_url, notice: 'Товар успішно видалено.' }
       format.json { head :no_content }
     end
   end
 
   private
 
-    # Use callbacks to share common setup or constraints between actions.
     def set_listing
       @listing = Listing.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def listing_params
       params.require(:listing).permit(:name, :category_id, :description, :price, :specification, :image)
     end
 
     def check_user
       if !current_user.admin
-        redirect_to root_url, alert: "Не достаточно прав для редактирования"
+        redirect_to root_url, alert: "Доступ заборонено"
       end
     end
 end

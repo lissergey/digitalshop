@@ -1,75 +1,35 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any styles
- * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
- * file per style scope.
- *
- *= require_tree .
- *= require_self
- */
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "normalize";
 
 body {
+  background-color: #F5F5F1;
   color: #333333;
-  font-family: 'Open Sans', sans-serif;
-  font-weight: normal;
-  padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+  font-family: Arial, Helvetica, sans-serif;
+  padding-top: 70px;
 }
-.navbar-default {
 
-}
-.navbar-default .navbar-brand {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
-  color: white;
-  font-size: 30px;
-}
-.navbar-default .navbar-nav > li > a {
-  font-family: 'Open Sans', sans-serif;
-  font-size: 14px;
-  font-weight: normal;
-  color: white;
-}
-.nav{
-  font-family: 'Open Sans', sans-serif;
-  color: white;
-}
 .center {
   text-align: center;
 }
-.col-md-3:nth-child(4n+1) {
-  clear: left;
-}
-.col-md-6 {
-  h3 {
-    font-size: 45px;
-  }
-  h5 {
-    font-size: 25px;
-  }
-  p {
-    font-size: 18px;
-  }
-}
-
 
 .thumbnail img {
   width: 100%;
+  height: 200px;
 }
 
-.ratings {
-  padding-right: 10px;
-  padding-left: 10px;
-  color: #d17581;
-  padding-bottom: 2em;
+.thumbnail_1 img {
+  width: 100%;
+  height: 50%;
+}
+
+.thumbnail a > img {
+  width: 100%;
+  height: 200px;
+}
+
+.ratings a{
+  float: left;
 }
 
 .thumbnail {
@@ -104,26 +64,8 @@ footer {
   margin-left: 1em;
 }
 
-.btn-success > a {
-  color: white;
-}
-
-.news_box {
-
-}
 a {
   text-decoration: none;
-}
-
-a:active {
-  background-color: white;
-  text-decoration: none;
-}
-
-a:hover {
-  background-color: white;
-  text-decoration: none;
-  color: black;
 }
 
 .row_1 {
@@ -149,14 +91,48 @@ a:hover {
   margin-left:20px;
 }
 
-.search_box {
-  width: 50%;
-  float:left;
-  input{
-    float:left;
-  }
+.navbar-default {
+  background-color: #EFEFEB;
 }
 
-.header{
-  position: fixed;
+.navbar-default .navbar-brand {
+  font-family: guardian-egyptt, georgia, serif;
+  font-weight: 400;
+  color: #d5641c;
+  font-size: 30px;
+}
+
+.navbar-default .navbar-nav > li > a {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  color: #0192B5;
+}
+
+.prod_title_list{
+  padding-left: 10px;
+}
+
+.price{
+  color: #0080a1;
+}
+
+h1{
+  font-weight: bold;
+  color: #0192B5;
+}
+
+h2{
+  font-weight: bold;
+  color: #0192B5;
+}
+
+h3 {
+  font-weight: bold;
+  color: #0192B5;
+}
+
+h4 {
+  font-weight: bold;
+  color: #0192B5;
 }

@@ -1,5 +1,9 @@
-<h1>New Listing</h1>
+<h1>Новий товар</h1>
 
 <%= render 'form' %>
 
-<%= link_to 'Back', listings_path %>
+<nav>
+  <ul class="pager">
+    <li><%= link_to 'До списку товарів', listings_path, class: "previous"%></li>
+  </ul>
+</nav>

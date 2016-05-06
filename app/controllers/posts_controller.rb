@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   before_filter :check_user, only: [:new, :create, :edit, :update, :destroy]
 
   def index
-    @post = Post.all.order("created_at desc").paginate(:page => params[:page], :per_page => 2)
+    @post = Post.all.order("created_at desc").paginate(:page => params[:page], :per_page => 5)
   end
 
   def new
@@ -13,10 +13,10 @@ class PostsController < ApplicationController
   def create
     @post = Post.new post_params
 
-    if verify_recaptcha(model: @listing) && @post.save
-      redirect_to @post, notice: "Новость добавлена!"
+    if @post.save
+      redirect_to @post, notice: "Новина додана!"
     else
-      render 'new', notice: " Что то пошло не так, не удалось создать новость!"
+      render 'new', notice: " Не вдалося створити новину!"
     end
   end
 
@@ -28,13 +28,13 @@ class PostsController < ApplicationController
 
   def update
     if @post.update post_params
-      redirect_to @post, notice: "Новость успешно обновлена!"
+      redirect_to @post, notice: "Новина успішно додана!"
     end
   end
 
   def destroy
     @post.destroy
-    redirect_to post_path
+    redirect_to posts_path
   end
 
   private
@@ -47,7 +47,7 @@ class PostsController < ApplicationController
   end
   def check_user
     if !current_user.admin
-      redirect_to root_url, alert: "У вас не достаточно прав для выполнения этого действия"
+      redirect_to root_url, alert: "Доступ заборонено"
     end
   end
 end

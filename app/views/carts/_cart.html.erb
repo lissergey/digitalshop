@@ -13,7 +13,7 @@
 </table>
 <nav>
   <ul class="pager">
-    <li><%= link_to 'Замовити', new_order_path, method: :get, class: "btn btn-success" %></li>
-    <li><%= link_to 'Звільнити кошик', cart, class: "btn btn-danger", method: :delete, data: { confirm: 'Ви впевнені що хочете видалити всі товари з кошику?' } %></li>
+    <li><%= link_to 'Замовити', new_order_path, method: :get%></li>
+    <li><%= link_to 'Звільнити кошик', cart, method: :delete, data: { confirm: 'Ви впевнені що хочете видалити всі товари з кошику?' } %></li>
   </ul>
 </nav>

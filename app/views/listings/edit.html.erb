@@ -1,6 +1,10 @@
-<h1>Editing Listing</h1>
+<h1>Редагування товару</h1>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @listing, class: "btn btn-link" %> |
-<%= link_to 'Back', listings_path, class: "btn btn-link" %>
+<nav>
+  <ul class="pager">
+    <li><%= link_to 'Переглянути', @listing, class: "btn btn-link" %></li>
+    <li><%= link_to 'До списку товарів', listings_path, class: "btn btn-link" %></li>
+  </ul>
+</nav>

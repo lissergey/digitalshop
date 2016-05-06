@@ -1,9 +1,9 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<h2>Редагувати профіль</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= devise_error_messages! %>
     <div class="form-group">
-      <%= f.label :name %><br />
+      <%= f.label "Ім'я" %><br />
       <%= f.text_field :name, autofocus: true, class: "form-control" %>
     </div>
   <div class="form-group">
@@ -16,27 +16,31 @@
   <% end %>
 
   <div class="form-group">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+    <%= f.label 'Пароль' %> <i>(пропустіть це поле якщо не хочете змінити пароль)</i><br />
     <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
   </div>
 
   <div class="form-group">
-    <%= f.label :password_confirmation %><br />
+    <%= f.label 'Повторіть пароль' %><br />
     <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
   </div>
 
   <div class="form-group">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+    <%= f.label 'Дійсний пароль' %> <i>(необхідно ввести дійсний пароль для підтверждення змін)</i><br />
     <%= f.password_field :current_password, autocomplete: "off", class: "form-control" %>
   </div>
 
   <div class="form-group">
-    <%= f.submit "Update", class: "btn btn-success" %>
+    <%= f.submit "Оновити", class: "btn btn-success" %>
   </div>
 <% end %>
 
-<h3>Cancel my account</h3>
+<h3>Видалення аккаунта</h3>
 
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger" %></p>
+<p>Хочете видалити свій аккаунт? <%= button_to "Видалити аккаунт", registration_path(resource_name), data: { confirm: "Ви впевнені що хочете видалити свій аккаунт?" }, method: :delete, class: "btn btn-danger" %></p>
 
-<%= link_to "Back", :back %>
+<nav>
+  <ul class="pager">
+    <li><%= link_to 'Назад', :back, class: "previous"%></li>
+  </ul>
+</nav>

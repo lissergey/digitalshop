@@ -3,9 +3,10 @@
 <div class="row">
   <h3 class="found-title"><%= @listing.name %></h3>
   <div class="col-md-6">
-    <div class="thumbnail">
+    <div class="thumbnail_1">
       <%= image_tag @listing.image.url %>
     </div>
+    <br>
   </div>
   <div class="col-md-6">
     <p class="delivery">
@@ -19,8 +20,8 @@
       <br>Гарантія: <b>24 місяця</b>
     </p>
     </p>
-    <p class="price">
-      Вартість товару: <%= @listing.price %> грн
+    <p>
+      Вартість товару: <b class="price"><%= @listing.price %></b> грн
     </p>
     <%= button_to 'Придбати', line_items_path(listing_id: @listing), class: "btn btn-success" %>
   </div>
@@ -43,7 +44,7 @@
     <nav>
       <ul class="pager">
         <li><%= link_to 'Редагувати', edit_listing_path(@listing), class: "btn btn-link" %></li>
-        <li><%= link_to 'Видалити', listings_path, class: "btn btn-link" %></li>
+        <li><%= link_to 'Видалити', listing_path(@listing), method: :delete, data: { confirm: 'Ви впевнені?' }, class: "btn btn-link" %></li>
       </ul>
     </nav>
 <% end %>
