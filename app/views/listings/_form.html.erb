@@ -21,6 +21,10 @@
       <%= f.collection_select :category_id, Category.all, :id, :name, {prompt: "Оберіть категорію"}, {class: "btn btn-default dropdown-toggle"} %>
     </div>
     <div class="form-group">
+      <%= f.label 'Виробник' %><br>
+      <%= f.collection_select :producer_id, Producer.all, :id, :name, {prompt: "Оберіть виробника"}, {class: "btn btn-default dropdown-toggle"} %>
+    </div>
+    <div class="form-group">
     <%= f.label 'Опис' %><br>
     <%= f.text_area :description, class: "form-control", rows: "10" %>
   </div>

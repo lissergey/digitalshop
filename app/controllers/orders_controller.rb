@@ -5,7 +5,7 @@ class OrdersController < ApplicationController
 
   def index
     if current_user.admin?
-      @orders = Order.all
+      @orders = Order.all.order("created_at DESC")
     else
       redirect_to listings_url, notice: "Доступ заборонено"
     end
@@ -73,6 +73,6 @@ class OrdersController < ApplicationController
     end
 
     def order_params
-      params.require(:order).permit(:name, :address, :email, :phone, :pay_type)
+      params.require(:order).permit(:name, :address, :email, :phone, :pay_type, :orders_statuses)
     end
 end

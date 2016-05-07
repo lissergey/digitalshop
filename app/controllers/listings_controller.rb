@@ -12,20 +12,26 @@ class ListingsController < ApplicationController
   end
 
   def index
-    if params[:price].present?
-      #@listings = Listing.all
-      @listings = Listing.all.order("created_at desc").paginate(:page => params[:page], :per_page => 9)
-      @listings = @listings.where(price: params["price"])
-    elsif params[:category].present?
+    @listings = Listing.all.order("created_at desc").paginate(:page => params[:page], :per_page => 9)
+    if params[:category].present?
       @category_id = Category.find_by(name: params[:category]).id
       @listings = Listing.where(category_id: @category_id).order("created_at DESC").paginate(:page => params[:page], :per_page => 9)
-    else
-      #@listings = Listing.all.order("created_at DESC")
-      @listings = Listing.all.order("created_at desc").paginate(:page => params[:page], :per_page => 9)
     end
+    if params[:producer].present?
+      @producer_id = Producer.find_by(name: params[:producer]).id
+      @listings = Listing.where(producer_id: @producer_id).order("created_at DESC").paginate(:page => params[:page], :per_page => 9)
+    end
+    if params[:producer].present? && params[:category].present?
+      @category_id = Category.find_by(name: params[:category]).id
+      @producer_id = Producer.find_by(name: params[:producer]).id
+      @listings = Listing.where(producer_id: @producer_id, category_id: @category_id).order("created_at DESC").paginate(:page => params[:page], :per_page => 9)
+    end
+    @listings = @listings.where("price >= ?", params["min_price"]) if params["min_price"].present?
+    @listings = @listings.where("price <= ?", params["max_price"]) if params["max_price"].present?
   end
 
   def show
+    @reviews = Review.where(listing_id: @listing.id).order("created_at DESC")
   end
 
   def new
@@ -77,7 +83,7 @@ class ListingsController < ApplicationController
     end
 
     def listing_params
-      params.require(:listing).permit(:name, :category_id, :description, :price, :specification, :image)
+      params.require(:listing).permit(:name, :category_id, :producer_id, :description, :price, :specification, :image)
     end
 
     def check_user

@@ -4,4 +4,5 @@ class User < ActiveRecord::Base
   validates :name, presence: true
 
   has_many :listing, dependent: :destroy
+  has_many :reviews, dependent: :destroy
 end

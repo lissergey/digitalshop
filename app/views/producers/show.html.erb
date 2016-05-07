@@ -1,0 +1,11 @@
+<p>
+  <strong>Назва:</strong>
+  <%= @producer.name %>
+</p>
+
+<nav>
+  <ul class="pager">
+    <li><%= link_to 'Редагувати', edit_producer_path(@producer), class: "btn btn-link" %></li>
+    <li><%= link_to 'До списку виробників', producers_path, class: "btn btn-link" %></li>
+  </ul>
+</nav>

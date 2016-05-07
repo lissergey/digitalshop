@@ -43,8 +43,11 @@
 5. Бытовая техника
 <div class="filter">
   <%= form_tag listings_path, method: :get do %>
-      <%= label_tag :price %>
-      <%= text_field_tag :price %>
+      <%= label_tag :min_price %>
+      <%= text_field_tag :min_price, params[:min_price] %>
+
+      <%= label_tag :max_price %>
+      <%= text_field_tag :max_price, params[:max_price] %>
 
       <%= submit_tag "Search", name: nil %>
   <% end %>

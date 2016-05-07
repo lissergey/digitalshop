@@ -1,0 +1,24 @@
+<h1>Керування виробниками</h1>
+
+<table class="table">
+  <thead>
+  <tr>
+    <th>Назва</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @producers.each do |producer| %>
+      <tr>
+        <td><%= producer.name %></td>
+        <td><%= link_to '', producer, class:"glyphicon glyphicon-search" %></td>
+        <td><%= link_to '', edit_producer_path(producer), class:"glyphicon glyphicon-pencil" %></td>
+        <td><%= link_to '', producer, method: :delete, class:"glyphicon glyphicon-remove-circle", data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to ' Додати виробника', new_producer_path, class:"glyphicon glyphicon-plus-sign" %>

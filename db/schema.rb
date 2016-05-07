@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160505143727) do
+ActiveRecord::Schema.define(version: 20160507152440) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -68,6 +68,7 @@ ActiveRecord::Schema.define(version: 20160505143727) do
     t.integer  "user_id"
     t.text     "specification"
     t.integer  "category_id"
+    t.integer  "producer_id"
   end
 
   create_table "orders", force: :cascade do |t|
@@ -76,8 +77,9 @@ ActiveRecord::Schema.define(version: 20160505143727) do
     t.string   "email"
     t.string   "phone"
     t.string   "pay_type"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.string   "orders_statuses"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -85,6 +87,21 @@ ActiveRecord::Schema.define(version: 20160505143727) do
     t.text     "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "producers", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.integer  "rating"
+    t.text     "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "user_id"
+    t.integer  "listing_id"
   end
 
   create_table "users", force: :cascade do |t|

@@ -137,6 +137,11 @@ h4 {
   color: #0192B5;
 }
 
+h4 {
+  font-weight: bold;
+  color: #0192B5;
+}
+
 .hidden { display: none; }
 
 .alert-error {
@@ -165,4 +170,18 @@ h4 {
   border-color: #d6e9c6;
   color: #468847;
   text-align: left;
+}
+
+#price-inp{
+  width: 80px;
+}
+
+#button-filter{
+  margin-top: 10px;
+}
+
+.in_tumb{
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-bottom: 10px;
 }

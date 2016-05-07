@@ -1,0 +1,21 @@
+<%= form_for(@producer) do |f| %>
+  <% if @producer.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@producer.errors.count, "error") %> prohibited this producer from being saved:</h2>
+
+      <ul>
+      <% @producer.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label 'Назва' %><br>
+    <%= f.text_field :name, class: "form-control" %>
+  </div>
+  <div class="actions">
+    <%= f.submit 'Створити', class: "btn btn-success"  %>
+  </div>
+<% end %>

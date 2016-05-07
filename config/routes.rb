@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :producers
   #get 'users/index'
   devise_for :admins
   resources :orders
@@ -10,6 +11,7 @@ Rails.application.routes.draw do
   get 'pages/waranty'
 
   resources :listings do
+    resources :reviews, except: [:show, :index]
     collection do
       get 'search'
     end

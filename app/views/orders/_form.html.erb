@@ -32,6 +32,13 @@
     <%= f.select :pay_type, Order::PAYMENT_TYPES,
         prompt: 'Оберіть спосіб оплати', class: "form-control" %>
   </div>
+  <% if user_signed_in? && current_user.admin? %>
+    <div class="form-group">
+      <%= f.label 'Статус замовлення' %><br>
+      <%= f.select :orders_statuses, Order::ORDERS_STATUSES,
+                   prompt: 'Статус замовлення', class: "form-control" %>
+    </div>
+  <% end %>
   <div class="form-group">
     <%= f.submit 'Підтвердити замовлення', class: "btn btn-success"%>
   </div>

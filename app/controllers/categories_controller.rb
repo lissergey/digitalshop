@@ -14,7 +14,11 @@ class CategoriesController < ApplicationController
   end
 
   def new
-    @category = Category.new
+    if current_user.admin?
+      @category = Category.new
+    else
+      redirect_to root_path, notice: "Доступ заборонено"
+    end
   end
 
   def edit

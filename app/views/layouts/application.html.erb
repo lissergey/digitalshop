@@ -45,6 +45,29 @@
           <a href="listings?category=Інші аксесуари" class="list-group-item">Інші аксесуари</a>
         </div>
       </div>
+
+        <h4>Фільтр товарів</h4>
+        <div class="thumbnail">
+        <div class="in_tumb">
+        <%= form_tag listings_path, class:"form-inline", method: :get do %>
+          <h5>Ціна</h5>
+              <div class="form-group">
+                  <%= label_tag 'Від' %>
+                  <%= text_field_tag :min_price, params[:min_price], class: "form-control", id: "price-inp" %>
+                </div>
+                <div class="form-group">
+                  <%= label_tag 'До' %>
+                  <%= text_field_tag :max_price, params[:max_price],  class: "form-control", id: "price-inp" %> грн<br>
+              </div>
+          <h5>Категорія</h5>
+              <%= select_tag(:category, options_from_collection_for_select(Category.all, :name, :name, params[:category]), { include_blank: true }) %>
+          <h5>Виробник</h5>
+              <%= select_tag(:producer, options_from_collection_for_select(Producer.all, :name, :name, params[:producer]), { include_blank: true }) %>
+          <br>
+            <%= submit_tag "Знайти", name: nil, class: "btn btn-primary", id: "button-filter"%>
+        <% end %>
+        </div>
+        </div>
     </div>
     <div class="col-md-9">
         <%= yield %>

@@ -7,7 +7,11 @@ class PostsController < ApplicationController
   end
 
   def new
-    @post = Post.new
+    if current_user.admin?
+      @post = Post.new
+    else
+      redirect_to root_path, notice: "Доступ заборонено"
+    end
   end
 
   def create
