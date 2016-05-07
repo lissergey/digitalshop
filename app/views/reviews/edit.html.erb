@@ -1,5 +1,9 @@
-<h1>Editing Review</h1>
+<h1>Редагування відгуку</h1>
 
 <%= render 'form' %>
 
-<%= link_to 'Back', listing_path(@listing) %>
+<nav>
+  <ul class="pager">
+    <li><%= link_to 'До товару', listing_path(@listing), class: "previous" %></li>
+  </ul>
+</nav>

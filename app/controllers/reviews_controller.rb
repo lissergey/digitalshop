@@ -23,7 +23,7 @@ class ReviewsController < ApplicationController
     @review.listing_id = @listing.id
 
     respond_to do |format|
-      if @review.save
+      if verify_recaptcha(model: @user) && @review.save
         format.html { redirect_to @listing, notice: 'Review was successfully created.' }
         format.json { render :show, status: :created, location: @review }
       else
@@ -35,8 +35,8 @@ class ReviewsController < ApplicationController
 
   def update
     respond_to do |format|
-      if @review.update(review_params)
-        format.html { redirect_to @review, notice: 'Review was successfully updated.' }
+      if verify_recaptcha(model: @user) && @review.update(review_params)
+        format.html { redirect_to @listing, notice: 'Review was successfully updated.' }
         format.json { render :show, status: :ok, location: @review }
       else
         format.html { render :edit }
@@ -48,7 +48,7 @@ class ReviewsController < ApplicationController
   def destroy
     @review.destroy
     respond_to do |format|
-      format.html { redirect_to reviews_url, notice: 'Review was successfully destroyed.' }
+      format.html { redirect_to @listing, notice: 'Review was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

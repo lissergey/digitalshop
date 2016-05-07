@@ -31,7 +31,7 @@ class ListingsController < ApplicationController
   end
 
   def show
-    @reviews = Review.where(listing_id: @listing.id).order("created_at DESC")
+    @reviews = Review.where(listing_id: @listing.id).order("created_at DESC").paginate(:page => params[:page], :per_page => 5)
   end
 
   def new

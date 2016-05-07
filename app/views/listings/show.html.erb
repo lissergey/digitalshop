@@ -10,14 +10,14 @@
   </div>
   <div class="col-md-6">
     <p class="delivery">
-      <h4>Доставка</h4>
-      <p>
-            <li>− Ви можете отримати товар в нашому магазині</li>
-            <li>− або отримати у відділенні нової пошти</li>
-            <li>- Доставимо кур'єром в зручний для вас час.</li>
-      <h4>Розрахунок</h4>
-            Готівкою, безготівковий, кредит, Visa/MasterCard</br>
-      <br>Гарантія: <b>24 місяця</b>
+    <h4>Доставка</h4>
+    <p>
+    <li>− Ви можете отримати товар в нашому магазині</li>
+    <li>− або отримати у відділенні нової пошти</li>
+    <li>- Доставимо кур'єром в зручний для вас час.</li>
+    <h4>Розрахунок</h4>
+    Готівкою, безготівковий, кредит, Visa/MasterCard</br>
+    <br>Гарантія: <b>24 місяця</b>
     </p>
     </p>
     <p>
@@ -26,67 +26,66 @@
     <%= button_to 'Придбати', line_items_path(listing_id: @listing), class: "btn btn-success" %>
   </div>
 </div>
-  <div class="row">
-    <div class="span9">
-      <!-- Nav tabs -->
-      <ul class="nav nav-tabs" role="tablist">
-        <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Опис</a></li>
-        <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Характеристики</a></li>
-        <li role="presentation"><a href="#reviews" aria-controls="reviews" role="tab" data-toggle="tab">Відгуки</a></li>
-      </ul>
-      <!-- Tab panes -->
-      <div class="tab-content">
-        <div role="tabpanel" class="tab-pane active" id="home"><%= simple_format @listing.description %></div>
-        <div role="tabpanel" class="tab-pane" id="profile"><%= markdown @listing.specification %></div>
-        <div role="tabpanel" class="tab-pane" id="reviews">
-          <% if @reviews.blank? %>
-              <h3>No reviews yet. Be the first to write one!</h3>
-
-          <% else %>
-              <table class="table">
-                <thead>
-                <tr>
-                  <th class="col-md-3"></th>
-                  <th class="col-md-9"></th>
-                </tr>
-                </thead>
-                <tbody>
-                <% @reviews.each do |review| %>
-                    <tr>
-                      <td>
-                        <h4>
-                          <%= "#{review.user.name.capitalize}" %>
-                        </h4>
-                        <p><%= review.created_at.strftime("%-m/%-d/%-y") %></p>
-                      </td>
-                      <td>
-                        <div class="star-rating" data-score= <%= review.rating %> ></div>
-                        <p><%= h(review.comment).gsub(/\n/, '<br/>').html_safe %></p>
-                      </td>
-                    </tr>
-                <% end %>
-                </tbody>
-              </table>
-          <% end %>
-          <%= link_to "Write Review", new_listing_review_path(@listing), class: "btn btn-primary" %>
-          <script>
-            $('.star-rating').raty({
-              path: 'https://s3-us-west-2.amazonaws.com/stars-mydiploma/stars/',
-              readOnly: true,
-              score: function() {
-                return $(this).attr('data-score');
-              }
-            });
-          </script>
-        </div>
+<div class="row">
+  <div class="span9">
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+      <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Опис</a>
+      </li>
+      <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Характеристики</a>
+      </li>
+      <li role="presentation"><a href="#reviews" aria-controls="reviews" role="tab" data-toggle="tab">Відгуки</a></li>
+    </ul>
+    <!-- Tab panes -->
+    <div class="tab-content">
+      <div role="tabpanel" class="tab-pane active" id="home"><%= simple_format @listing.description %></div>
+      <div role="tabpanel" class="tab-pane" id="profile"><%= markdown @listing.specification %></div>
+      <div role="tabpanel" class="tab-pane" id="reviews">
+        <% if @reviews.blank? %>
+            <center><h3>Відгуків про цей товар нажаль зараз немає. Ви можете першим залишити свій відгук!</h3></center>
+        <% else %>
+            <% @reviews.each do |review| %>
+                <div class="col-sm-13">
+                  <div class="panel panel-default">
+                    <div class="panel-heading">
+                      <strong><%= "#{review.user.name.capitalize}" %></strong>
+                      <span class="text-muted"><%= review.created_at.strftime("%-m/%-d/%-y") %></span>
+                      <div class="star-rating" data-score=<%= review.rating %>></div>
+                      <% if ((user_signed_in?) && current_user.admin?) or ((user_signed_in?) && current_user.id == review.user.id) %>
+                        <div class="comment_edit_panel">
+                          <%= link_to '', edit_listing_review_path(@listing, review), class: 'glyphicon glyphicon-pencil' %>
+                          <%= link_to '', listing_review_path(@listing, review), method: :delete, data: {confirm: 'Ви впевнені?'}, class: "glyphicon glyphicon-remove" %>
+                        </div>
+                      <% end %>
+                    </div>
+                    <div class="panel-body">
+                      <%= h(review.comment).gsub(/\n/, '<br/>').html_safe %>
+                    </div>
+                  </div>
+                </div>
+            <% end %>
+        <% end %>
+        <center><%= link_to "Залишити відгук", new_listing_review_path(@listing), class: "btn btn-primary" %></center>
+        <center><%= will_paginate @reviews, renderer: BootstrapPagination::Rails, :previous_label => 'Назад', :next_label => 'Вперед' %></center>
       </div>
+    </div>
   </div>
+  <br>
+  <% if (user_signed_in?) && current_user.admin? %>
+      <nav>
+        <ul class="pager">
+          <li><%= link_to 'Редагувати', edit_listing_path(@listing), class: "btn btn-link" %></li>
+          <li><%= link_to 'Видалити', listing_path(@listing), method: :delete, data: {confirm: 'Ви впевнені?'}, class: "btn btn-link" %></li>
+        </ul>
+      </nav>
+  <% end %>
 </div>
-<% if (user_signed_in?) && current_user.admin? %>
-    <nav>
-      <ul class="pager">
-        <li><%= link_to 'Редагувати', edit_listing_path(@listing), class: "btn btn-link" %></li>
-        <li><%= link_to 'Видалити', listing_path(@listing), method: :delete, data: { confirm: 'Ви впевнені?' }, class: "btn btn-link" %></li>
-      </ul>
-    </nav>
-<% end %>
+<script>
+  $('.star-rating').raty({
+    path: 'https://s3-us-west-2.amazonaws.com/stars-mydiploma/stars/',
+    readOnly: true,
+    score: function () {
+      return $(this).attr('data-score');
+    }
+  });
+</script>
