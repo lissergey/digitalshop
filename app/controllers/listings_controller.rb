@@ -12,7 +12,7 @@ class ListingsController < ApplicationController
   end
 
   def index
-    @listings = Listing.all.order("created_at desc").paginate(:page => params[:page], :per_page => 9)
+    @listings = Listing.all.order("RANDOM()").paginate(:page => params[:page], :per_page => 9)
     if params[:category].present?
       @category_id = Category.find_by(name: params[:category]).id
       @listings = Listing.where(category_id: @category_id).order("created_at DESC").paginate(:page => params[:page], :per_page => 9)
